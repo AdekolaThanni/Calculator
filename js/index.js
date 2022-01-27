@@ -1,4 +1,3 @@
-
 // Theme changing algorithm
 
 // On clicking the first dot
@@ -158,7 +157,11 @@ $(".key").on("click",function(){
     else if (numbers.includes(input) && operations.includes(prevInput) == false){
         if (answerMode === false){
             isInputAllowed = true;
-        }else {
+        }
+        else if (operations.includes(input)){
+            answerMode = false;
+        }
+        else {
             $(".calculator__screen").text(input);
             answerMode = false;
         }
@@ -193,7 +196,7 @@ $(".key").on("click",function(){
 
         answerMode = true;
         // Update the result
-        $(".calculator__screen").text(result);
+        $(".calculator__screen").text(+result.toFixed(7));
     }
 
     // A condition to check if the previous value and current user input is an operation
@@ -217,6 +220,7 @@ $(".key").on("click",function(){
 
         // A condition that checks if the input was a valid input of an operation, if so change the status of decimalAllowed
         if (operations.includes(prevInput)){
+            answerMode = false;
             decimalAllowed = true;
         }
     }
